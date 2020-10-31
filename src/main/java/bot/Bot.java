@@ -17,14 +17,10 @@ import java.util.*;
 @Component
 public class Bot extends TelegramLongPollingBot {
 
-    @Value("${bot.username}")
-    private String botUserName;
+    private final String BOT_USER_NAME = "CatYuriiBot";
 
     @Value("${bot.token}")
     private String botToken;
-
-    @Value("${bot.imagespath}")
-    private String imagesPath;
 
     @Value("${bot.chatid}")
     private String chatId;
@@ -36,7 +32,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return botUserName;
+        return BOT_USER_NAME;
     }
 
     @Override
@@ -101,7 +97,7 @@ public class Bot extends TelegramLongPollingBot {
     @Scheduled(cron = "0 05 9 * * 5") // Каждую пятницу в 9:05 утра
     public void sendVideoOnFriday() {
 
-        File file = new File(imagesPath + "friday1.mp4");
+        File file = new File("./img/friday1.mp4");
 
         SendVideo message = new SendVideo();
         message.setVideo(file);
